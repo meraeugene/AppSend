@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Sender — Andrew Villalon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="inner">
+          <div>
+            <div class="brand-title">AppSend</div>
+            <div class="brand-sub">
+              Developed by
+              <a href="https://andrewvillalon.online" target="_blank"
+                >Andrew Villalon</a
+              >
+            </div>
+          </div>
+          <div class="theme-toggle" id="themeToggle">
+            <button data-mode="light" id="btnLight">Light</button>
+            <button data-mode="dark" id="btnDark">Dark</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <!-- LEFT: controls -->
+        <aside class="left-panel">
+          <div class="hero">
+            <h1>Send it, track it, don't lose it.</h1>
+            <p>
+              Import leads, open ready-made emails, then mark each company as
+              applied.
+            </p>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-card">
+              <div class="stat-num" id="statTotal">0</div>
+              <div class="stat-label">Companies</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="statEmails">0</div>
+              <div class="stat-label">Emails</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="statApplied">0</div>
+              <div class="stat-label">Applied</div>
+              <div class="progress-track">
+                <div
+                  class="progress-fill"
+                  id="progressFill"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-box">
+            <h3>Import leads</h3>
+            <p class="sub">Upload your Excel or CSV lead list.</p>
+            <input
+              type="file"
+              id="excelInput"
+              accept=".xlsx,.xls,.csv"
+              hidden
+            />
+            <button class="btn btn-ghost btn-block" id="importBtn">
+              <span class="icon" id="iconUpload"></span> Import Excel
+            </button>
+            <div class="import-status" id="importStatus"></div>
+          </div>
+
+          <div class="panel-box">
+            <h3>Email template</h3>
+            <p class="sub">Edit the subject and message used for every lead.</p>
+            <button class="btn btn-edit btn-block" id="openTemplateBtn">
+              <span class="icon" id="iconEdit"></span> Open template
+            </button>
+          </div>
+
+          <p class="disclaimer">
+            Send opens your mail app with the email filled in. Attach your files
+            before sending.
+          </p>
+
+          <button
+            class="btn btn-danger btn-block"
+            id="resetBtn"
+            style="margin-top: 14px"
+          >
+            <span class="icon" id="iconTrash"></span> Reset all data
+          </button>
+        </aside>
+
+        <!-- RIGHT: search + companies -->
+        <main class="right-panel">
+          <div class="content">
+            <div class="toolbar-sticky">
+              <div class="search-wrap">
+                <span class="icon" id="iconSearch"></span>
+                <input
+                  class="search-input"
+                  id="searchInput"
+                  type="text"
+                  placeholder="Search company, role, or location…"
+                />
+              </div>
+              <div class="select-wrap">
+                <select id="filterSelect">
+                  <option value="all">All</option>
+                  <option value="pending">Pending</option>
+                  <option value="done">Applied</option>
+                </select>
+                <span class="icon" id="iconCaret"></span>
+              </div>
+            </div>
+
+            <div class="cards" id="cardList"></div>
+            <div class="empty" id="emptyState" style="display: none"></div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="templateModal" aria-hidden="true">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="templateModalTitle"
+      >
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" id="templateModalTitle">Email template</h2>
+            <p class="modal-sub">
+              Use <code>{{company}}</code> and <code>{{role}}</code>. Changes
+              save automatically.
+            </p>
+          </div>
+          <button
+            class="icon-btn"
+            type="button"
+            data-close-modal="templateModal"
+            aria-label="Close template modal"
+          >
+            ×
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="template-body">
+            <div>
+              <div class="field-label">Subject</div>
+              <input type="text" class="field" id="subjectField" />
+            </div>
+            <div>
+              <div class="field-label">Body</div>
+              <textarea class="field" id="bodyField"></textarea>
+            </div>
+          </div>
+          <div class="modal-actions">
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-close-modal="templateModal"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="resetModal" aria-hidden="true">
+      <div
+        class="modal modal-small"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resetModalTitle"
+      >
+        <div class="modal-header">
+          <div>
+            <h2 class="modal-title" id="resetModalTitle">Reset all data?</h2>
+            <p class="modal-sub">
+              This clears imported companies and applied marks. Your email
+              template stays.
+            </p>
+          </div>
+          <button
+            class="icon-btn"
+            type="button"
+            data-close-modal="resetModal"
+            aria-label="Close reset modal"
+          >
+            ×
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-actions">
+            <button
+              class="btn btn-ghost"
+              type="button"
+              data-close-modal="resetModal"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-danger" type="button" id="confirmResetBtn">
+              Reset data
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
