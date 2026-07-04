@@ -1,0 +1,22 @@
+{
+  "name": "AppSend — Lead Tracking & Application Tool",
+  "short_name": "AppSend",
+  "description": "Lead tracking and application-sending tool for managing job applications from a spreadsheet.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon dark mode.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon dark mode.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
