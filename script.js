@@ -13,6 +13,9 @@ const ICONS = {
     linkOff: `<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="22" y2="22"/><path d="M18.8 14.6a5 5 0 0 0-7.4-7.4l-3 3a5 5 0 0 0 6.3 7.6"/><path d="M5.2 9.4a5 5 0 0 0 7.4 7.4l3-3a5 5 0 0 0-6.3-7.6"/></svg>`,
     trash: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
     edit: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
+    remote: `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg>`,
+    onsite: `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    hybrid: `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>`,
 };
 document.getElementById("iconUpload").innerHTML = ICONS.upload;
 document.getElementById("iconSearch").innerHTML = ICONS.search;
@@ -553,7 +556,7 @@ function render() {
           <span class="icon">${isDone ? ICONS.checkCircle : ICONS.circle}</span>${isDone ? "Applied" : "Mark applied"}
         </div>
       </div>
-      <div class="pills"><span class="pill">${c.role}</span><span class="pill">${c.setup}</span></div>
+      <div class="pills"><span class="pill">${c.role}</span>${(() => { const s = (c.setup || '').toLowerCase().trim(); let icon = ''; if (s === 'remote') icon = ICONS.remote; else if (s === 'on-site' || s === 'onsite' || s === 'on site') icon = ICONS.onsite; else if (s === 'hybrid') icon = ICONS.hybrid; return c.setup && c.setup !== '—' && c.setup !== '-' ? `<span class="pill pill-setup">${icon}<span>${c.setup}</span></span>` : ''; })()}</div>
       <div class="email-list">${emailRows}</div>
       ${urlLink}
     `;

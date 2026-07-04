@@ -125,16 +125,12 @@ body {
 
 body {
   background:
-    radial-gradient(
-      60% 40% at 20% 0%,
+    radial-gradient(60% 40% at 20% 0%,
       rgba(255, 255, 255, 0.07),
-      transparent 60%
-    ),
-    radial-gradient(
-      50% 35% at 100% 15%,
+      transparent 60%),
+    radial-gradient(50% 35% at 100% 15%,
       rgba(255, 255, 255, 0.05),
-      transparent 60%
-    ),
+      transparent 60%),
     var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -376,45 +372,45 @@ header .inner {
 
 .btn-edit {
   color: var(--edit-text);
-  background: linear-gradient(
-    180deg,
-    var(--edit-bg-top),
-    var(--edit-bg-bottom)
-  );
+  background: linear-gradient(180deg,
+      var(--edit-bg-top),
+      var(--edit-bg-bottom));
   border-color: var(--edit-border);
 }
 
 .btn-edit:hover {
-  background: linear-gradient(
-    180deg,
-    var(--edit-bg-top-hover),
-    var(--edit-bg-bottom-hover)
-  );
+  background: linear-gradient(180deg,
+      var(--edit-bg-top-hover),
+      var(--edit-bg-bottom-hover));
   border-color: var(--edit-border-hover);
 }
 
 .btn-danger {
   color: var(--danger-text);
-  background: linear-gradient(
-    180deg,
-    var(--danger-bg-top),
-    var(--danger-bg-bottom)
-  );
+  background: linear-gradient(180deg,
+      var(--danger-bg-top),
+      var(--danger-bg-bottom));
   border-color: var(--danger-border);
 }
 
 .btn-danger:hover {
-  background: linear-gradient(
-    180deg,
-    var(--danger-bg-top-hover),
-    var(--danger-bg-bottom-hover)
-  );
+  background: linear-gradient(180deg,
+      var(--danger-bg-top-hover),
+      var(--danger-bg-bottom-hover));
   border-color: var(--danger-border-hover);
 }
 
 .btn-block {
   width: 100%;
   justify-content: center;
+  max-width: none !important;
+}
+
+/* btn-block inside modal-footer must stay full width */
+.modal-footer .btn-block {
+  width: 100% !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
 }
 
 .icon {
@@ -818,11 +814,9 @@ select option {
   width: min(720px, 100%);
   max-height: min(86vh, 760px);
   overflow: auto;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.11),
-    rgba(255, 255, 255, 0.035)
-  );
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.11),
+      rgba(255, 255, 255, 0.035));
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius);
   box-shadow: var(--shadow-modal);
@@ -833,11 +827,9 @@ select option {
 }
 
 html[data-theme="light"] .modal {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.92),
-    rgba(255, 255, 255, 0.76)
-  );
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(255, 255, 255, 0.76));
   border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -850,10 +842,10 @@ html[data-theme="light"] .modal {
 
 .modal-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px 22px 12px;
+  padding: 20px 22px 16px;
 }
 
 .modal-title {
@@ -873,6 +865,10 @@ html[data-theme="light"] .modal {
 
 .modal-body {
   padding: 0 22px 22px;
+}
+
+#templateModal .modal-body {
+  padding-top: 18px !important;
 }
 
 .modal-actions {
@@ -1097,11 +1093,9 @@ html[data-theme="light"] .email-row {
 }
 
 html[data-theme="light"] .stat-card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.92),
-    rgba(246, 246, 246, 0.86)
-  );
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(246, 246, 246, 0.86));
   box-shadow:
     0 10px 24px rgba(0, 0, 0, 0.055),
     inset 0 1px 0 rgba(255, 255, 255, 0.85);
@@ -1121,11 +1115,9 @@ html[data-theme="light"] select {
 html[data-theme="light"] .stat-card,
 html[data-theme="light"] .panel-box,
 html[data-theme="light"] .card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.98),
-    rgba(244, 244, 244, 0.92)
-  ) !important;
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(244, 244, 244, 0.92)) !important;
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
@@ -1213,11 +1205,9 @@ html[data-theme="dark"] .modal-content {
 html[data-theme="light"] .stat-card,
 html[data-theme="light"] .panel-box,
 html[data-theme="light"] .card {
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.96),
-    rgba(246, 246, 246, 0.9)
-  ) !important;
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(246, 246, 246, 0.9)) !important;
   box-shadow:
     0 10px 26px rgba(0, 0, 0, 0.055),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
@@ -1390,6 +1380,7 @@ header .inner {
 }
 
 @media (max-width: 900px) {
+
   header .inner,
   .layout {
     width: 100% !important;
@@ -1420,16 +1411,12 @@ body {
   overflow-y: auto !important;
   overflow-x: visible !important;
   background:
-    radial-gradient(
-      60% 40% at 20% 0%,
+    radial-gradient(60% 40% at 20% 0%,
       rgba(255, 255, 255, 0.07),
-      transparent 60%
-    ),
-    radial-gradient(
-      50% 35% at 100% 15%,
+      transparent 60%),
+    radial-gradient(50% 35% at 100% 15%,
       rgba(255, 255, 255, 0.05),
-      transparent 60%
-    ),
+      transparent 60%),
     var(--bg) !important;
 }
 
@@ -1560,16 +1547,12 @@ body {
   overflow-y: auto !important;
   overflow-x: visible !important;
   background:
-    radial-gradient(
-      60% 40% at 20% 0%,
+    radial-gradient(60% 40% at 20% 0%,
       rgba(255, 255, 255, 0.07),
-      transparent 60%
-    ),
-    radial-gradient(
-      50% 35% at 100% 15%,
+      transparent 60%),
+    radial-gradient(50% 35% at 100% 15%,
       rgba(255, 255, 255, 0.05),
-      transparent 60%
-    ),
+      transparent 60%),
     var(--bg) !important;
 }
 
@@ -1644,6 +1627,7 @@ header .inner,
 }
 
 @media (max-width: 900px) {
+
   header .inner,
   .layout {
     width: calc(100% - 40px) !important;
@@ -2012,7 +1996,7 @@ html {
 
 .icon-btn,
 button.icon-btn,
-button[data-close-modal] {
+button[data-close-modal]:not(.btn) {
   width: 34px !important;
   height: 34px !important;
   min-width: 34px !important;
@@ -2071,7 +2055,7 @@ header,
 }
 
 /* Only the X buttons should be perfect circles */
-.modal-header > button.icon-btn[data-close-modal] {
+.modal-header>button.icon-btn[data-close-modal] {
   width: 34px !important;
   height: 34px !important;
   min-width: 34px !important;
@@ -2093,7 +2077,10 @@ header,
 /* Action buttons inside modals should keep normal button width */
 .modal-actions .btn,
 .modal-actions button.btn,
-.modal-actions button[data-close-modal].btn {
+.modal-actions button[data-close-modal].btn,
+.modal-footer .btn,
+.modal-footer button.btn,
+.modal-footer button[data-close-modal].btn {
   width: auto !important;
   height: auto !important;
   min-width: 92px !important;
@@ -2110,6 +2097,15 @@ header,
   white-space: nowrap !important;
   overflow: visible !important;
   aspect-ratio: auto !important;
+}
+
+/* btn-block inside modal-footer must be full width (overrides the auto above) */
+.modal-footer .btn.btn-block,
+.modal-footer button.btn.btn-block,
+.modal-footer button[data-close-modal].btn.btn-block {
+  width: 100% !important;
+  flex: 1 1 100% !important;
+  min-width: 0 !important;
 }
 
 .modal-actions {
@@ -2278,7 +2274,7 @@ header .inner,
   min-width: 0 !important;
 }
 
-.card-top > div:first-child {
+.card-top>div:first-child {
   flex: 1 1 auto !important;
   min-width: 0 !important;
 }
@@ -2707,6 +2703,7 @@ header .inner.header-inner {
 }
 
 @media (min-width: 1181px) {
+
   header .inner,
   .layout {
     width: min(var(--page-max), calc(100% - 64px)) !important;
@@ -2848,6 +2845,7 @@ header .inner.header-inner {
 }
 
 @media (min-width: 1181px) {
+
   header .inner,
   .layout {
     width: min(var(--page-max), calc(100% - 72px)) !important;
@@ -2985,7 +2983,7 @@ header .inner.header-inner {
     gap: 18px !important;
   }
 
-  .card-top > div:first-child {
+  .card-top>div:first-child {
     flex: 1 1 auto !important;
     min-width: 0 !important;
     padding-right: 4px !important;
@@ -3073,9 +3071,7 @@ header .inner.header-inner {
   }
 
   body {
-    padding-top: calc(
-      var(--mobile-header-space) + env(safe-area-inset-top, 0px)
-    ) !important;
+    padding-top: calc(var(--mobile-header-space) + env(safe-area-inset-top, 0px)) !important;
   }
 
   header {
@@ -3172,7 +3168,7 @@ header .inner.header-inner {
     gap: 16px !important;
   }
 
-  .card-top > div:first-child {
+  .card-top>div:first-child {
     flex: 1 1 auto !important;
     min-width: 0 !important;
     padding-right: 12px !important;
@@ -3252,7 +3248,7 @@ header .inner.header-inner {
     gap: 14px !important;
   }
 
-  .card-top > div:first-child {
+  .card-top>div:first-child {
     padding-right: 10px !important;
   }
 
@@ -3294,10 +3290,8 @@ header .inner.header-inner {
   header .inner,
   header .inner.header-inner,
   .layout {
-    width: min(
-      var(--page-max),
-      calc(100% - (var(--page-gutter) * 2))
-    ) !important;
+    width: min(var(--page-max),
+        calc(100% - (var(--page-gutter) * 2))) !important;
     max-width: var(--page-max) !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -3405,6 +3399,7 @@ header .inner.header-inner {
 }
 
 @media (max-width: 640px) {
+
   .email-row .btn.career-btn,
   .career-btn,
   .url-link.career-btn {
@@ -3426,9 +3421,7 @@ header .inner.header-inner {
 }
 
 body {
-  padding-top: calc(
-    var(--appsend-header-h) + env(safe-area-inset-top, 0px)
-  ) !important;
+  padding-top: calc(var(--appsend-header-h) + env(safe-area-inset-top, 0px)) !important;
 }
 
 header {
@@ -3454,10 +3447,8 @@ html[data-theme="light"] header {
 header .inner,
 header .inner.header-inner,
 .layout {
-  width: min(
-    var(--appsend-page-max),
-    calc(100% - (var(--appsend-page-gutter) * 2))
-  ) !important;
+  width: min(var(--appsend-page-max),
+      calc(100% - (var(--appsend-page-gutter) * 2))) !important;
   max-width: var(--appsend-page-max) !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -3562,9 +3553,7 @@ header .inner.header-inner {
   }
 
   body {
-    padding-top: calc(
-      var(--appsend-header-h) + env(safe-area-inset-top, 0px)
-    ) !important;
+    padding-top: calc(var(--appsend-header-h) + env(safe-area-inset-top, 0px)) !important;
   }
 
   header .inner,
@@ -3654,9 +3643,7 @@ body {
 body {
   display: block !important;
   overflow-y: auto !important;
-  padding-top: calc(
-    var(--appsend-header-h) + env(safe-area-inset-top, 0px)
-  ) !important;
+  padding-top: calc(var(--appsend-header-h) + env(safe-area-inset-top, 0px)) !important;
   background: #050505 !important;
 }
 
@@ -3711,10 +3698,8 @@ html[data-theme="light"] header.is-scrolled {
 header .inner,
 header .inner.header-inner,
 .layout {
-  width: min(
-    var(--appsend-page-max),
-    calc(100% - (var(--appsend-page-gutter) * 2))
-  ) !important;
+  width: min(var(--appsend-page-max),
+      calc(100% - (var(--appsend-page-gutter) * 2))) !important;
   max-width: var(--appsend-page-max) !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -3835,9 +3820,7 @@ header .inner.header-inner {
   }
 
   body {
-    padding-top: calc(
-      var(--appsend-header-h) + env(safe-area-inset-top, 0px)
-    ) !important;
+    padding-top: calc(var(--appsend-header-h) + env(safe-area-inset-top, 0px)) !important;
   }
 
   header .inner,
@@ -4089,7 +4072,7 @@ html[data-theme="light"] .step-card:hover {
   height: 2px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 99px;
-  margin-top: 14px;
+  margin-top: 16px;
   position: relative;
   overflow: hidden;
   opacity: 0;
@@ -4132,4 +4115,73 @@ html[data-theme="light"] .step-card:hover {
   100% {
     transform: translateX(100%);
   }
+}
+
+/* Work-setup pill icon alignment */
+.pill-setup {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.pill-setup svg {
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+/* ── Full-screen modals on mobile (Step 3 + Email template only) ── */
+@media (max-width: 640px) {
+
+  /* Only Step 3 (AI Prompt) and Email Template go full screen */
+  #templateModal .modal,
+  #copyPromptModal .modal {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+  }
+
+  /* Remove backdrop padding only for full-screen modals */
+  #templateModal.modal-backdrop,
+  #copyPromptModal.modal-backdrop {
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+
+  /* Sticky header inside full-screen modals */
+  #templateModal .modal-header,
+  #copyPromptModal .modal-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+    flex-shrink: 0 !important;
+    border-bottom: 1px solid var(--glass-border-soft) !important;
+  }
+
+  /* Scrollable body in full-screen modals */
+  #templateModal .modal-body,
+  #copyPromptModal .modal-body {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Sticky footer for full-screen modals */
+  #templateModal .modal-footer,
+  #copyPromptModal .modal-footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 10 !important;
+    flex-shrink: 0 !important;
+    padding: 14px 16px calc(14px + env(safe-area-inset-bottom)) !important;
+    border-top: 1px solid var(--glass-border-soft) !important;
+  }
+
 }
